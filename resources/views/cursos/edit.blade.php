@@ -48,6 +48,16 @@
             @endforeach
         </select>
     </div>
+    <div class="mb-3">
+        <label for="eixo_id" class="form-label">Eixo</label>
+        <select name="eixo_id" class="form-select" required>
+            @foreach($eixos as $eixo)
+                <option value="{{ $eixo->id }}" @selected($eixo->id == $curso->eixo_id)>
+                    {{ $eixo->nome }}
+                </option>
+            @endforeach
+        </select>
+    </div>
 
     <div class="d-flex justify-content-between">
         <a href="{{ route('cursos.index') }}" class="btn btn-secondary">Cancelar</a>

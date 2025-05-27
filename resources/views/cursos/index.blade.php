@@ -32,6 +32,7 @@
                     <th scope="col">Sigla</th>
                     <th scope="col">Total de Horas</th>
                     <th scope="col">Nível</th>
+                    <th scope="col">Eixo</th>
                     <th scope="col">
                 </tr>
             </thead>
@@ -43,6 +44,7 @@
                         <td>{{ $curso->sigla }}</td>
                         <td>{{ $curso->total_horas }} horas</td>
                         <td>{{ $curso->nivel ? $curso->nivel->nome : 'Nível não atribuído' }}</td>
+                        <td>{{ $curso->eixo ? $curso->eixo->nome : 'Eixo não atribuído' }}</td>
                         <td class="text-end">
                             <a href="{{ route('cursos.show', $curso->id) }}" class="btn btn-sm btn-info me-2">Ver</a>
                             <a href="{{ route('cursos.edit', $curso->id) }}" class="btn btn-sm btn-warning me-2">Atualizar</a>

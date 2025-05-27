@@ -35,6 +35,15 @@
                 @endforeach
             </select>
         </div>
+        <div class="mb-3">
+            <label for="eixo_id" class="form-label">Eixo</label>
+            <select name="eixo_id" class="form-select" required>
+                <option value="">Selecione um eixo</option>
+                @foreach($eixos as $eixo)
+                    <option value="{{ $eixo->id }}">{{ $eixo->nome }}</option>
+                @endforeach
+            </select>
+        </div>
     </div>
 
     <a>
