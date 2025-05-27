@@ -9,6 +9,7 @@ use App\Http\Controllers\TurmaController;
 use App\Http\Controllers\DocumentoController;
 use App\Http\Controllers\ComprovanteController;
 use App\Http\Controllers\DeclaracaoController;
+use App\Http\Controllers\EixoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,6 +23,7 @@ Route::resource('/documentos', DocumentoController::class);
 Route::resource('/alunos', AlunoController::class);
 Route::resource('/comprovantes', ComprovanteController::class);
 Route::resource('/declaracoes', DeclaracaoController::class);
+Route::resource('/eixos', EixoController::class);
 
 
 
