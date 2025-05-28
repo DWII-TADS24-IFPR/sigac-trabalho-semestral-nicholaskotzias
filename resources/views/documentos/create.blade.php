@@ -14,39 +14,41 @@
             @endforeach
         </ul>
     </div>
-
 @endif
 
-<form action="{{ route('documentos.store') }}" method="POST">
+<form action="{{ route('documentos.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
+
     <div class="mb-3">
-        <label for="url" class="form-label">URL</label>
-        <input type="text" class="form-control" id="url" name="url" required>
-        <label for="descricao" class="form-label">Descricao</label>
+        <label for="url" class="form-label">Arquivo</label>
+        <input type="file" class="form-control" id="url" name="url" required>
+
+        <label for="descricao" class="form-label">Descrição</label>
         <input type="text" class="form-control" id="descricao" name="descricao" required>
-        <label for="horas_in" class="form-label">Horas_in</label>
-        <input type="float" class="form-control" id="horas_in" name="horas_in" required>
+
+        <label for="horas_in" class="form-label">Horas In</label>
+        <input type="number" step="0.01" class="form-control" id="horas_in" name="horas_in" required>
+
         <label for="status" class="form-label">Status</label>
-        <input type="text" class="form-control" id="status" name="status" required>
+        <input type="text" class="form-control" id="status" name="status" value="analise" readonly required>
+
         <label for="comentario" class="form-label">Comentario</label>
-        <input type="text" class="form-control" id="comentario" name="comentario" required>
-        <label for="horas_out" class="form-label">Horas_out</label>
-        <input type="float" class="form-control" id="horas_out" name="horas_out" required>
-        <div class="mb-3">
-            <label for="categoria_id" class="form-label">Categoria</label>
-            <select name="categoria_id" class="form-select" required>
-                <option value="">Selecione uma categoria</option>
-                @foreach($categorias as $categoria)
-                    <option value="{{ $categoria->id }}">{{ $categoria->nome }}</option>
-                @endforeach
-            </select>
-        </div>
+        <input type="text" class="form-control" id="comentario" name="comentario">
+
+        <label for="horas_out" class="form-label">Horas Out</label>
+        <input type="number" step="0.01" class="form-control" id="horas_out" name="horas_out" required>
+
+        <label for="categoria_id" class="form-label">Categoria</label>
+        <select name="categoria_id" class="form-select" required>
+            <option value="">Selecione uma categoria</option>
+            @foreach($categorias as $categoria)
+                <option value="{{ $categoria->id }}">{{ $categoria->nome }}</option>
+            @endforeach
+        </select>
     </div>
 
-    <a>
-
     <button type="submit" class="btn btn-primary">Enviar</button>
-    <a href="{{ route('documentos.index') }}" class="btn btn-primary">Retornar</a>
-
+    <a href="{{ route('documentos.index') }}" class="btn btn-secondary">Retornar</a>
 </form>
+
 @endsection
