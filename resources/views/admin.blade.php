@@ -15,7 +15,7 @@
         <a href="{{ route('alunos.index') }}" class="btn btn-primary btn-lg px-4" style="min-width: 160px;">Aluno</a>
         <a href="{{ route('categorias.index') }}" class="btn btn-primary btn-lg px-4" style="min-width: 160px;">Categoria</a>
         <a href="{{ route('comprovantes.index') }}" class="btn btn-primary btn-lg px-4" style="min-width: 160px;">Comprovante</a>
-        <a href="{{ route('admin.documentos') }}" class="btn btn-primary btn-lg px-4" style="min-width: 160px;">Documento</a>
+        <a href="/admin/documentos">Ir para documentos</a>
         <a href="{{ route('declaracoes.index') }}" class="btn btn-primary btn-lg px-4" style="min-width: 160px;">Declarações</a>
     </div>
 </div>
