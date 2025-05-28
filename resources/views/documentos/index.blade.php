@@ -30,24 +30,18 @@
                     <th scope="col">ID</th>
                     <th scope="col">URL</th>
                     <th scope="col">Descricao</th>
-                    <th scope="col">Horas_in</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Comentario</th>
-                    <th scope="col">Horas_out</th>
-                    <th scope="col">Categoria</th>
                     <th scope="col">
                 </tr>
             </thead>
             <tbody>
                 @forelse($documentos as $documento)
                     <tr>
-                        <td>{{ $documento->url }}</td>
+                        <td>
+                            <a href="{{ asset('storage/' . $documento->url) }}" download class="btn btn-sm btn-primary">
+                                Baixar
+                            </a>
+                        </td>
                         <td>{{ $documento->descricao }}</td>
-                        <td>{{ $documento->horas_in }} horas</td>
-                        <td>{{ $documento->status }}</td>
-                        <td>{{ $documento->comentario }}</td>
-                        <td>{{ $documento->horas_out }} horas</td>
-                        <td>{{ $documento->categoria ? $documento->categoria->nome : 'Categoria não atribuída' }}</td>
                         <td class="text-end">
                             <a href="{{ route('documentos.show', $documento->id) }}" class="btn btn-sm btn-info me-2">Ver</a>
                             <a href="{{ route('documentos.edit', $documento->id) }}" class="btn btn-sm btn-warning me-2">Atualizar</a>
