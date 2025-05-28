@@ -23,18 +23,19 @@ class DocumentoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'url' => 'required|string|min:6',
+            'url' => 'required|file|mimes:pdf,doc,docx,jpg,png|max:5120', // 5MB
             'descricao' => 'required|string|min:3|max:255',
-            'horas_in' => 'required|min:3',
+            'horas_in' => 'required|numeric|min:0',
             'status' => 'required|string|min:5|max:100',
-            'horas_out' => 'required',
+            'horas_out' => 'required|numeric|min:0',
             'comentario' => 'nullable|string|max:500',
             'categoria_id' => 'required|exists:categorias,id'
         ]);
 
+        $caminho = $request->file('url')->store('documentos', 'public');
 
-        $documento = Documento::create([
-            'url' => $request->url,
+        Documento::create([
+            'url' => $caminho,
             'descricao' => $request->descricao,
             'horas_in' => $request->horas_in,
             'status' => $request->status,
@@ -43,8 +44,9 @@ class DocumentoController extends Controller
             'categoria_id' => $request->categoria_id,
         ]);
 
-        return redirect()->route('documentos.index')->with(['success' => 'Documento ' . $documento->url . ' criado com sucesso!']);
+        return redirect()->route('documentos.index')->with(['success' => 'Documento enviado com sucesso!']);
     }
+
 
     public function show(string $id)
     {
@@ -93,6 +95,6 @@ class DocumentoController extends Controller
         $documento = Documento::findOrFail($id);
         $documento->delete();
 
-        return redirect()->route('documentos.index')->with(['success' => 'Documento ' . $documento->nome . ' excluido com sucesso!']);
+        return redirect()->route('documentos.index')->with(['success' => 'Documento ' . $documento->url . ' excluido com sucesso!']);
     }
 }
