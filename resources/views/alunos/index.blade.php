@@ -20,7 +20,7 @@
     @endif
 
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <a href="{{ route('alunos.create') }}" class="btn btn-primary">Adicionar Aluno</a>
+        <a href="/alunos/create" class="btn btn-primary">Adicionar Aluno</a>
     </div>
 
     <div class="table-responsive">
