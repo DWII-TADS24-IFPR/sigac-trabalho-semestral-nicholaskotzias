@@ -11,10 +11,7 @@
     @include('layouts.navbar')
 
     <div class="container">
-        <h1>SIGAC -  Sistema de Gerenciamneto de Atividades Complementares</h1>
         @yield('content')
-
     </div>
-    @include('layouts.footer')
 </body>
 </html>
