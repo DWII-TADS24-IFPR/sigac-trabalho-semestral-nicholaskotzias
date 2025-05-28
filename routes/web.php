@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\CategoriaController;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +14,20 @@ use App\Http\Controllers\EixoController;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/admin', function () {
+    return view('admin');
+});
+
+Route::get('/aluno', function () {
+    return view('aluno');
+});
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/documentos', [AdminController::class, 'documentos'])->name('documentos');
+    Route::post('/documentos/{id}/aprovar', [AdminController::class, 'aprovarDocumento'])->name('documentos.aprovar');
+    Route::post('/documentos/{id}/rejeitar', [AdminController::class, 'rejeitarDocumento'])->name('documentos.rejeitar');
 });
 
 Route::resource('/niveis', NivelController::class);
