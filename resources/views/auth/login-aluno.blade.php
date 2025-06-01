@@ -1,31 +1,38 @@
 <x-guest-layout>
-        <x-slot name="logo">
-            <h1>Login Aluno</h1>
-        </x-slot>
+    <x-slot name="logo">
+        <h1 class="text-2xl font-semibold mb-6 text-center">Login Aluno</h1>
+    </x-slot>
 
-        <form method="POST" action="{{ route('login.aluno') }}">
-            @csrf
+    <form method="POST" action="{{ route('login.aluno') }}">
+        @csrf
 
-            <div>
-                <x-input-label for="email" value="Email" />
-                <x-text-input id="email" type="email" name="email" required autofocus />
-                <x-input-error :messages="$errors->get('email')" />
-            </div>
+        <div class="mb-4">
+            <x-input-label for="email" value="Email" />
+            <x-text-input id="email" type="email" name="email" required autofocus class="w-full" />
+            <x-input-error :messages="$errors->get('email')" class="mt-1" />
+        </div>
 
-            <div class="mt-4">
-                <x-input-label for="password" value="Senha" />
-                <x-text-input id="password" type="password" name="password" required />
-                <x-input-error :messages="$errors->get('password')" />
-            </div>
+        <div class="mb-6">
+            <x-input-label for="password" value="Senha" />
+            <x-text-input id="password" type="password" name="password" required class="w-full" />
+            <x-input-error :messages="$errors->get('password')" class="mt-1" />
+        </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <x-primary-button>Entrar</x-primary-button>
-            </div>
-            <div class="flex items-center justify-end mt-4">
-                Nao tem conta?
-                <a href="{{ route('alunos.create') }}" class="btn btn-primary px-4 py-2 rounded">
-                    Clique aqui
-                </a>
-            </div>
-        </form>
+        <div class="flex justify-between items-center mb-6">
+            <a href="{{ url('/login') }}"
+               class="inline-block px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition">
+                Voltar
+            </a>
+
+            <x-primary-button>
+                Entrar
+            </x-primary-button>
+        </div>
+
+        <div class="text-center">
+            <span>Não tem conta? </span>
+            <a href="{{ route('alunos.create') }}">Clique aqui</a>
+            </a>
+        </div>
+    </form>
 </x-guest-layout>
