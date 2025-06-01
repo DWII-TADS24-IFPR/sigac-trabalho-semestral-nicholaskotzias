@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionController extends Controller
 {
+    public function create()
+    {
+        return view('loginChoice');
+    }
+
     public function showAdminLoginForm()
     {
         return view('auth.login-admin');
@@ -18,22 +23,20 @@ class AuthenticatedSessionController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-
             $user = Auth::user();
 
             if ($user->role === 'adm') {
-                return redirect()->intended('/admin');
+                return redirect()->route('admin.home');
+            } else {
+                Auth::logout();
+                return redirect()->route('login.admin')->withErrors([
+                    'email' => 'Usuário não é um administrador.',
+                ]);
             }
-
-            Auth::logout(); 
-            return redirect()->route('login.admin')->withErrors([
-                'email' => 'Você não tem permissão de administrador.',
-            ]);
         }
 
         return back()->withErrors([
-            'email' => 'Credenciais inválidas.',
+            'email' => 'As credenciais informadas estão incorretas.',
         ]);
     }
 
@@ -55,7 +58,7 @@ class AuthenticatedSessionController extends Controller
                 return redirect()->intended('/aluno');
             }
 
-            Auth::logout(); 
+            Auth::logout();
             return redirect()->route('login.aluno')->withErrors([
                 'email' => 'Você não tem permissão para acessar como aluno.',
             ]);
@@ -64,5 +67,16 @@ class AuthenticatedSessionController extends Controller
         return back()->withErrors([
             'email' => 'Credenciais inválidas.',
         ]);
+    }
+
+    public function destroy(Request $request)
+    {
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }
