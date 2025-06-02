@@ -26,7 +26,7 @@ class UserController extends Controller
             'name'     => 'required|string|max:255',
             'email'    => 'required|email|unique:users,email',
             'password' => 'required|string|min:6|confirmed',
-            'role'     => ['required', Rule::in(['adm', 'aluno'])],  //
+            'role'     => ['required', Rule::in(['adm', 'aluno'])]
         ]);
 
         $data['password'] = Hash::make($data['password']);
@@ -53,7 +53,7 @@ class UserController extends Controller
         if ($data['password']) {
             $data['password'] = Hash::make($data['password']);
         } else {
-            unset($data['password']);  
+            unset($data['password']);
         }
 
         $user->update($data);
