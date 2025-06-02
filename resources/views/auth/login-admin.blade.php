@@ -1,30 +1,32 @@
 <x-guest-layout>
     <x-slot name="logo">
-        <h1>Login ADM</h1>
+        <h1 class="text-2xl font-semibold mb-6 text-center">Login Admin</h1>
     </x-slot>
 
     <form method="POST" action="{{ route('login.admin') }}">
         @csrf
 
-        <div>
+        <div class="mb-4">
             <x-input-label for="email" value="Email" />
-            <x-text-input id="email" type="email" name="email" required autofocus />
-            <x-input-error :messages="$errors->get('email')" />
+            <x-text-input id="email" type="email" name="email" required autofocus class="w-full" />
+            <x-input-error :messages="$errors->get('email')" class="mt-1" />
         </div>
 
-        <div class="mt-4">
+        <div class="mb-6">
             <x-input-label for="password" value="Senha" />
-            <x-text-input id="password" type="password" name="password" required />
-            <x-input-error :messages="$errors->get('password')" />
+            <x-text-input id="password" type="password" name="password" required class="w-full" />
+            <x-input-error :messages="$errors->get('password')" class="mt-1" />
         </div>
 
-        <div class="flex items-center justify-end mt-4 gap-4">
+        <div class="flex justify-between items-center mb-6 gap-4">
             <a href="{{ url('/login') }}"
-               class="inline-flex items-center px-4 py-2 bg-gray-200 text-gray-700 hover:bg-gray-300 rounded-md">
+               class="inline-block px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition">
                 Voltar
             </a>
 
-            <x-primary-button>Entrar</x-primary-button>
+            <x-primary-button>
+                Entrar
+            </x-primary-button>
         </div>
     </form>
 </x-guest-layout>
