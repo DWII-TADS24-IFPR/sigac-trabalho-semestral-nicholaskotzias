@@ -44,7 +44,7 @@ class DocumentoController extends Controller
             'categoria_id' => $request->categoria_id,
         ]);
 
-        return redirect()->route('documentos.index')->with(['success' => 'Documento enviado com sucesso!']);
+        return redirect()->route('aluno.home')->with(['success' => 'Documento enviado com sucesso!']);
     }
 
 
@@ -87,7 +87,7 @@ class DocumentoController extends Controller
             'categoria_id' => $request->categoria_id,
         ]);
 
-        return redirect()->route('documentos.index')->with(['success' => 'Documento ' . $documento->url . ' atualizado com sucesso!']);
+        return (['success' => 'Documento ' . $documento->url . ' atualizado com sucesso!']);
     }
 
     public function destroy(string $id)
@@ -95,6 +95,6 @@ class DocumentoController extends Controller
         $documento = Documento::findOrFail($id);
         $documento->delete();
 
-        return redirect()->route('documentos.index')->with(['success' => 'Documento ' . $documento->url . ' excluido com sucesso!']);
+        return (['success' => 'Documento ' . $documento->url . ' excluido com sucesso!']);
     }
 }
