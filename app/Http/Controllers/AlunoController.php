@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Aluno;
 use App\Models\Curso;
 use App\Models\Turma;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AlunoController extends Controller
 {
@@ -27,19 +29,28 @@ class AlunoController extends Controller
         $request->validate([
             'nome' => 'required|string|min:3|max:255',
             'cpf' => 'required|string|min:11',
-            'email' => 'required|string|min:5',
+            'email' => 'required|string|email|unique:users,email',
             'senha' => 'required|string|min:8',
+            'role' => 'aluno',
             'curso_id' => 'required|exists:cursos,id',
             'turma_id' => 'required|exists:turmas,id'
+        ]);
+
+        $user = User::create([
+            'name' => $request->nome,
+            'email' => $request->email,
+            'password' => Hash::make($request->senha),
+            'role' => 'aluno',
         ]);
 
         $aluno = Aluno::create([
             'nome' => $request->nome,
             'cpf' => $request->cpf,
             'email' => $request->email,
-            'senha' => $request->senha,
+            'senha' => bcrypt($request->senha),
             'curso_id' => $request->curso_id,
             'turma_id' => $request->turma_id,
+            'user_id' => $user->id,
         ]);
 
         return redirect()->route('alunos.index')->with(['success' => 'Aluno ' . $aluno->nome . ' criado com sucesso!']);
