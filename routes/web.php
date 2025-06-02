@@ -78,10 +78,9 @@ Route::middleware(['auth', 'isAluno'])->prefix('aluno')->name('aluno.')->group(f
 
     Route::get('/documentos/create', [DocumentoController::class, 'create'])->name('documentos.create');
     Route::post('/documentos', [DocumentoController::class, 'store'])->name('documentos.store');
-
-    Route::post('/alunos', [AlunoController::class, 'store'])->name('alunos.store');
 });
 
+Route::post('/alunos', [AlunoController::class, 'store'])->name('alunos.store');
 Route::get('/alunos/create', [AlunoController::class, 'create'])->name('alunos.create');
 
 require __DIR__.'/auth.php';
