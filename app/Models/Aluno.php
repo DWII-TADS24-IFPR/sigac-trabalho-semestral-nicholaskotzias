@@ -20,4 +20,9 @@ class Aluno extends Model
     public function comprovantes(){
         return $this->hasMany(Comprovante::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
