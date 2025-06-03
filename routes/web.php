@@ -12,8 +12,8 @@ use App\Http\Controllers\{
     DocumentoController,
     AlunoController,
     ComprovanteController,
-    DeclaracaoController,
-    EixoController
+    GerarDeclaracaoController,
+    EixoController,
 };
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
@@ -78,6 +78,8 @@ Route::middleware(['auth', 'isAluno'])->prefix('aluno')->name('aluno.')->group(f
 
     Route::get('/documentos/create', [DocumentoController::class, 'create'])->name('documentos.create');
     Route::post('/documentos', [DocumentoController::class, 'store'])->name('documentos.store');
+
+    Route::get('/declaracao/emitir', [GerarDeclaracaoController::class, 'emitirDeclaracao'])->name('declaracao.emitir');
 });
 
 Route::post('/alunos', [AlunoController::class, 'store'])->name('alunos.store');
