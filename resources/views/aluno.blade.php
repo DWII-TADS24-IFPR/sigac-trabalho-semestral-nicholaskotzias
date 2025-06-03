@@ -22,6 +22,10 @@
     <div class="d-flex flex-wrap justify-content-center gap-3">
         <a href="{{ route('aluno.documentos.create') }}" class="btn btn-info btn-lg px-4" style="min-width: 200px;">Adicionar Documento</a>
     </div>
+    <br>
+    <div class="d-flex flex-wrap justify-content-center gap-3">
+        <a href="{{ route('aluno.declaracao.emitir') }}" class="btn btn-info btn-lg px-4" style="min-width: 200px;">Emitir Declaracao</a>
+    </div>
 </div>
 
 @endsection
